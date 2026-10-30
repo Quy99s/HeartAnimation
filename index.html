@@ -1,16 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Heart Animation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100c16">
+  <meta name="description" content="Mini game Halloween bắt ma.">
+  <title>Haunted Hearts</title>
   <link rel="stylesheet" href="./style.css">
-
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div id="word">Kim Ngân</div>
-<!-- partial -->
-  <script type="module" src="./script.js"></script>
-
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="bat" viewBox="0 0 100 50"><path d="M50 22 44 12 40 22C28 8 12 11 1 1c0 19 9 28 21 27 0 10 11 14 20 9l8 12 8-12c9 5 20 1 20-9 12 1 21-8 21-27C88 11 72 8 60 22l-4-10z"/></symbol>
+    <symbol id="pumpkin" viewBox="0 0 130 120"><path d="M63 30q-8-18 6-24l9 6q-14 4-6 19" fill="#8d9866"/><ellipse cx="65" cy="72" rx="58" ry="44" fill="#b54720"/><ellipse cx="65" cy="73" rx="44" ry="45" fill="#dc672b"/><ellipse cx="65" cy="73" rx="24" ry="45" fill="#f18738"/><path d="m29 66 20-14 5 20zm47 6 5-20 20 14zM35 86l15 5 6-6 10 11 10-10 7 5 13-6q-29 38-61 1" fill="#29151b"/><path d="m34 65 13-9 3 12zm46 3 3-12 13 9z" fill="#ffd784"/></symbol>
+  </defs></svg>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Trang chủ"><span class="brand-icon">♡</span> <span id="brand-name">PLAYER</span></a>
+    <span class="edition">HALLOWEEN · 31.10</span>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Boo, <em id="hero-name">Player.</em></h1>
+        <p class="description" id="game-instruction">Bắt 10 ma.</p>
+      </div>
+      <div class="heart-scene" id="heart-scene">
+        <div class="moon" aria-hidden="true"></div>
+        <svg class="bat bat-one" aria-hidden="true"><use href="#bat"/></svg>
+        <svg class="bat bat-three" aria-hidden="true"><use href="#bat"/></svg>
+        <canvas id="heart-canvas" role="img" aria-label="Đầu lâu tạo từ những hạt sáng"></canvas>
+        <div class="game-hud" id="game-hud" hidden><span id="score">♡ 0 / 10</span><span id="misses">Hụt 0 / 3</span><span id="timer" role="timer" aria-label="Thời gian còn lại">15s</span></div>
+        <button id="ghost" class="ghost" aria-label="Bắt bé ma" hidden><canvas id="ghost-canvas" width="240" height="280" aria-hidden="true"></canvas></button>
+        <div class="game-overlay" id="game-overlay"><label class="name-label" for="player-name">Tên người chơi</label><input id="player-name" class="name-input" type="text" maxlength="24" placeholder="Nhập tên của bạn" autocomplete="nickname" required><p id="game-result" role="status"></p><button class="spell-button" id="start-game">Chơi nào <span aria-hidden="true">↗</span></button></div>
+        <div class="pumpkins" aria-hidden="true"><svg class="pumpkin-small"><use href="#pumpkin"/></svg><svg class="pumpkin-large"><use href="#pumpkin"/></svg></div>
+      </div>
+    </section>
+    <div class="bottom-bar">
+      <button class="color-button" id="cast-spell" aria-label="Đổi màu trái tim">Đổi màu ♡</button>
+      <span id="spell-status" class="sr-only" role="status"></span>
+      <div class="controls"><button id="toggle-sound" aria-label="Bật âm thanh" aria-pressed="false">♫</button><button id="toggle-motion" aria-label="Tạm dừng hiệu ứng" aria-pressed="false"><span id="motion-icon" aria-hidden="true">Ⅱ</span></button></div>
+    </div>
+  </main>
+  <section id="heart-view" class="heart-view" aria-label="Trái tim 3D" aria-hidden="true" inert>
+    <div id="heart-3d-mount" class="heart-3d-mount"></div>
+    <div class="heart-reveal"><div class="heart-reveal-kicker">HALLOWEEN · YOU WIN</div><h2 id="heart-winner-name"></h2></div>
+    <div class="heart-toolbar"><span>Kéo để xoay · Cuộn để phóng to</span><button id="back-to-game" type="button">↶ Chơi lại</button></div>
+  </section>
+  <script src="./script.js" defer></script>
+  <script type="module" src="./heart.js"></script>
 </body>
 </html>
